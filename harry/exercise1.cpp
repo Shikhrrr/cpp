@@ -13,6 +13,9 @@ class SimpleCalculator
         int ans;
     
     public:
+
+        friend class ScientificCalculator;
+
         int add(int, int);
         int subtract(int, int);
         int multiply(int, int);
@@ -48,10 +51,10 @@ int SimpleCalculator ::divide(int a, int b)
     return ans;
 }
 
-class ScientificCalculator : public SimpleCalculator
+class  ScientificCalculator
 {
-//     protected:
-//         int a, b, ans;
+     protected:
+         int a, b, ans;
 
     public:
         int square(int);
@@ -75,8 +78,8 @@ int ScientificCalculator ::cube(int a)
 float ScientificCalculator ::areaCircle(int r)
 {
     r = float(r);
-    ans = pi * r * r;
-    return ans;
+    SimpleCalculator ::ans = pi * r * r;
+    return SimpleCalculator ::ans;
 }
 
 float ScientificCalculator ::sinValue(float a)
@@ -85,20 +88,20 @@ float ScientificCalculator ::sinValue(float a)
     return ans;
 }
 
-class HybridCalculator : public ScientificCalculator
+class HybridCalculator : virtual public ScientificCalculator, virtual public SimpleCalculator
 {
     public:
         int factorial(int);
 };
 
-int HybridCalculator ::factorial(int a)
+int HybridCalculator ::factorial(int n)
 {
-    for (int i = 1; i <= a; i++)
+    for (int i = 1; i <= n; i++)
     {
-        ans = 1 * i;
+        SimpleCalculator ::ans = 1 * i;
     }
 
-    return ans;
+    return SimpleCalculator ::ans;
 }
 
 int main(void)
