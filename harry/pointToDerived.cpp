@@ -8,7 +8,7 @@ class base {
             (*this).b = b;
         }
 
-        void display () {
+        virtual void display () { //virtual changes the default behaviour of binding rules
             cout << "Base: " << b << endl;            
         }
 };
@@ -33,11 +33,11 @@ int main(void)
     p2base = &d1;
 
     p2base->setb(4);
-    p2base->display();
 
     derived* p2derived;
     p2derived = &d1;
-
     p2derived->setd(5);
+    p2base->display();
+
     p2derived->display();
 }
